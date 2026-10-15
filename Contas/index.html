@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Minhas Contas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="login" hidden>
+        <section class="card">
+            <h2>Entrar</h2>
+            <form id="lf">
+                <input class="full" id="lemail" type="email" placeholder="E-mail" autocomplete="username" required>
+                <input class="full" id="lsenha" type="password" placeholder="Senha (mínimo 6 caracteres)" autocomplete="current-password" required>
+                <p class="vazio full" id="lmsg"></p>
+                <div class="btns full">
+                    <button class="add" type="submit">Entrar</button>
+                    <button class="cancel" type="button" id="lcriar">Criar conta</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <main id="app" hidden>
+        <header>
+            <h1>♾️ Contas mensais</h1>
+            <div class="hd">
+                <input class="mes" type="month" id="mes">
+                <button class="cancel" type="button" id="sair">Sair</button>
+            </div>
+        </header>
+        <div class="cols">
+            <div>
+                <section class="card">
+                    <h2>Receitas</h2>
+                    <ul id="lr"></ul>
+                    <div class="tot">
+                        <span>Total receitas</span>
+                        <b class="pos" id="tr"></b>
+                    </div>
+                </section>
+                <section class="card">
+                    <h2>Despesas</h2>
+                    <ul id="ld"></ul>
+                    <div class="tot bad">
+                        <span>Total de despesas</span>
+                        <b class="neg" id="td"></b>
+                    </div>
+                </section>
+                <section class="card">
+                    <div class="tot" style="margin:0">
+                        <span>Saldo total</span>
+                        <b id="ts"></b>
+                    </div>
+                </section>
+                <section class="card">
+                    <h2>Controle fim do mês</h2>
+                    <div class="tot bad" style="margin-top:0">
+                        <span>Total cartão e aluguel</span>
+                        <b class="neg" id="tca"></b>
+                    </div>
+                    <div class="tot">
+                        <span>Dinheiro em conta</span>
+                        <input type="number" step="0.01" id="conta" placeholder="0,00">
+                    </div>
+                    <div class="tot">
+                        <span>Total</span>
+                        <b id="tres"></b>
+                    </div>
+                </section>
+                <section class="card">
+                    <h2 id="ftit">Novo lançamento</h2>
+                    <form id="f">
+                        <div class="tipo full">
+                            <label>
+                                <input type="radio" name="tipo" value="d" checked>
+                                <span>Despesa</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="tipo" value="r">
+                                <span>Receita</span>
+                            </label>
+                        </div>
+                        <input class="full" id="nome" type="text" placeholder="Nome (Aluguel, Internet, Salário...)" required>
+                        <input id="valor" type="number" step="0.01" min="0.01" placeholder="Valor (R$)" required>
+                        <div>
+                            <input id="data" type="date" required>
+                        </div>
+                        <label class="chk full">
+                            <input type="checkbox" id="rep"> Repetir todo mês (vale a partir desta data)
+                        </label>
+                        <label class="chk full" id="resw">
+                            <input type="checkbox" id="res"> Somar em "Total cartão e aluguel"
+                        </label>
+                        <div class="btns full">
+                            <button class="add" type="submit" id="fbtn">Adicionar</button>
+                            <button class="cancel" type="button" id="fcan" hidden>Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div>
+                <div id="cartoes"></div>
+                <section class="card">
+                    <h2 id="ptit">Nova compra no cartão</h2>
+                    <p class="vazio" id="pmsg">Cadastre um cartão abaixo primeiro.</p>
+                    <form id="pf">
+                        <div class="full">
+                            <label class="l">Cartão</label>
+                            <select id="pcar"></select>
+                        </div>
+                        <input id="ppes" type="text" list="pnomes" placeholder="Quem usou (ex: Maria)" required>
+                        <datalist id="pnomes"></datalist>
+                        <input id="pdesc" type="text" placeholder="O que comprou (opcional)">
+                        <div>
+                            <label class="l">Valor total (R$)</label>
+                            <input id="pvalor" type="number" step="0.01" min="0.01" required>
+                        </div>
+                        <div>
+                            <label class="l">Parcelas</label>
+                            <select id="pn"></select>
+                        </div>
+                        <div class="full">
+                            <label class="l">Data da compra (1ª parcela)</label>
+                            <input id="pdata" type="date" required>
+                        </div>
+                        <div class="prev full" id="pprev">Preencha o valor para ver a parcela.</div>
+                        <div class="btns full">
+                            <button class="add" type="submit" id="pbtn">Adicionar compra</button>
+                            <button class="cancel" type="button" id="pcan" hidden>Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+                <section class="card">
+                    <h2 id="ctit">Novo cartão</h2>
+                    <form id="cf">
+                        <input id="cnome" type="text" placeholder="Nome (ex: Cartão Santander)" required>
+                        <input id="cdia" type="number" min="1" max="31" placeholder="Dia do vencimento" required>
+                        <label class="chk full">
+                            <input type="checkbox" id="cres" checked> Somar a fatura em "Total cartão e aluguel"
+                        </label>
+                        <div class="btns full">
+                            <button class="add" type="submit" id="cbtn">Adicionar cartão</button>
+                            <button class="cancel" type="button" id="ccan" hidden>Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
