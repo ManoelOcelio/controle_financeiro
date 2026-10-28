@@ -156,7 +156,11 @@ li.pg {
 li .n {
     flex: 1;
     min-width: 0;
+<<<<<<< HEAD
     overflow-wrap: break-word;
+=======
+    overflow-wrap: anywhere;
+>>>>>>> 34418571b52d6d45a2c0cb46c76d80461875a32c
 }
 
 li .d {
@@ -416,6 +420,7 @@ label.l {
 .hd .cancel {
     padding: 9px 12px;
 }
+<<<<<<< HEAD
 
 @media (max-width: 600px) {
     li {
@@ -433,3 +438,5 @@ label.l {
         margin-left: auto;
     }
 }
+=======
+>>>>>>> 34418571b52d6d45a2c0cb46c76d80461875a32c
